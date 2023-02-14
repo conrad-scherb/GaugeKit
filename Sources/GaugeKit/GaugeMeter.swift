@@ -48,7 +48,7 @@ struct GaugeMeter : View {
     ZStack {
       GeometryReader { geometry in
         let gradient = Gradient(colors: colors)
-        let meterThickness = geometry.size.width / 20
+        let meterThickness = geometry.size.width / 16
         
         AngularGradient(
           gradient: Gradient(colors: [Color(hue: 0, saturation: 0, brightness: 0.85
@@ -104,6 +104,7 @@ private struct GaugeMask: View {
       .stroke(style: StrokeStyle(lineWidth: CGFloat(meterThickness),
                                  lineCap: .round))
       .padding(CGFloat(meterThickness))
+      .scaleEffect(0.8)
   }
 }
 
