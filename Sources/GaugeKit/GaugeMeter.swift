@@ -81,8 +81,6 @@ struct GaugeMeter : View {
         )
         .rotationEffect(Angle(degrees: 90))
       }
-      Text(minValue != nil ? String(minValue ?? 0) : "").frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading).padding(.leading, 20).padding(.bottom, 50).font(.system(size: 24))
-      Text(maxValue != nil ? String(maxValue ?? 100) : "").frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing).padding(.trailing, 20).padding(.bottom, 50).font(.system(size: 24))
     }
     .aspectRatio(1, contentMode: .fit)
   }
