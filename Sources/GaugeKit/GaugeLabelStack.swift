@@ -19,17 +19,17 @@ struct GaugeLabelStack: View {
   @Environment(\.valueLabelColor) var valueColor
   @Environment(\.titleLabelColor) var titleColor
   
-  var value: Int?
+  var value: Double?
   var title: String?
   
   var body: some View {
     GeometryReader { geometry in
       let isTaller = geometry.size.width < geometry.size.height
       let smallestDimension = isTaller ? geometry.size.width : geometry.size.height
-      
+            
       VStack {
         if let unwrappedValue = value {
-          Text("\(unwrappedValue)")
+          Text("\(unwrappedValue, specifier: "%.\(unwrappedValue > 10 || (unwrappedValue - Double(Int(unwrappedValue))) < 0.1 ? 0 : 1)f")")
             .fontWeight(.bold)
             .font(.system(size: smallestDimension / 4))
             .foregroundColor(valueColor)

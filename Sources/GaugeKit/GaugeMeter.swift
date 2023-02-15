@@ -18,7 +18,7 @@ import SwiftUI
  */
 
 struct GaugeMeter : View {
-  let value: Int?
+  let value: Double?
   let colors: [Color]
   let maxValue: Int?
   let minValue: Int?
@@ -27,7 +27,7 @@ struct GaugeMeter : View {
   let trimEnd = 0.9
   let progressTo: Double
   
-  init(value: Int? = nil, maxValue: Int? = nil, minValue: Int? = nil, colors: [Color]) {
+  init(value: Double? = nil, maxValue: Int? = nil, minValue: Int? = nil, colors: [Color]) {
     self.colors = colors
     self.value = value
     let defaultMaxValue = maxValue == nil && value != nil
@@ -35,9 +35,10 @@ struct GaugeMeter : View {
     self.maxValue = defaultMaxValue ? 100 : maxValue
     self.minValue = defaultMinValue ? 0 : minValue
     
-    let unwrappedMin = minValue ?? 0
-    let unwrappedMax = maxValue ?? 100
-    let percentage = Double(value ?? 0 + unwrappedMin) / Double(unwrappedMax)
+    let unwrappedMin = Double(minValue ?? 0)
+    let unwrappedMax = Double(maxValue ?? 100)
+    let unwrappedValue = value ?? 0
+    let percentage = (unwrappedValue + unwrappedMin) / unwrappedMax
     self.progressTo = percentage * trimEnd + trimStart
   }
   
@@ -48,7 +49,7 @@ struct GaugeMeter : View {
     ZStack {
       GeometryReader { geometry in
         let gradient = Gradient(colors: colors)
-        let meterThickness = geometry.size.width / 16
+        let meterThickness = geometry.size.width / 14
         
         AngularGradient(
           gradient: Gradient(colors: [Color(hue: 0, saturation: 0, brightness: 0.85
@@ -111,6 +112,6 @@ private struct GaugeMask: View {
 struct GaugeComponents_Previews: PreviewProvider {
   static var previews: some View {
     let colors: [Color] = [.red, .orange, .yellow, .green]
-    GaugeView(title: "Speed", value: 5, maxValue: 10, minValue: 0, colors: colors)
+    GaugeView(title: "Speed", value: 5.7, maxValue: 10, minValue: 0, colors: colors)
   }
 }

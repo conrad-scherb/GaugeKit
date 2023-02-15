@@ -20,7 +20,7 @@ extension GaugeView {
    - value: An integer between 0 and 100 to visualize using the gauge.
    - colors: An array of Color instances to create the gauge's background gradient from..
    */
-  public init(value: Int?, colors: [Color]) {
+  public init(value: Double?, colors: [Color]) {
     self.title = nil
     self.value = value
     self.maxValue = 100
@@ -38,7 +38,7 @@ extension GaugeView {
    - value: An integer between 0 and 100 to visualize using the gauge.
    - colors: An array of Color instances to create the gauge's background gradient from..
    */
-  public init(title: String?, value: Int?, colors: [Color]) {
+  public init(title: String?, value: Double?, colors: [Color]) {
     self.title = title
     self.value = value
     self.maxValue = 100
@@ -58,7 +58,7 @@ extension GaugeView {
    - colors: An array of Color instances to create the gauge's background gradient from..
    - additionalInfo: A struct that contains three optional strings to display on the back of the gauge.
    */
-  public init(title: String?, value: Int?, colors: [Color], additionalInfo: GaugeAdditionalInfo) {
+  public init(title: String?, value: Double?, colors: [Color], additionalInfo: GaugeAdditionalInfo) {
     self.title = title
     self.value = value
     self.maxValue = 100

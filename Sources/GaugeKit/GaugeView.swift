@@ -24,7 +24,7 @@ public struct GaugeView : View {
   @State private var flipped: Bool = false
   
   let title: String?
-  let value: Int?
+  let value: Double?
   let maxValue: Int?
   let minValue: Int?
   let colors: [Color]
@@ -32,7 +32,7 @@ public struct GaugeView : View {
   
   public init(
     title: String? = nil,
-    value: Int? = nil,
+    value: Double? = nil,
     maxValue: Int? = nil,
     minValue: Int? = nil,
     colors: [Color],
