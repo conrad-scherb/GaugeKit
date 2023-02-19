@@ -27,6 +27,7 @@ extension GaugeView {
     self.minValue = 0
     self.colors = colors
     self.additionalInfo = nil
+    self.isInt = false
   }
   
   /**
@@ -45,6 +46,7 @@ extension GaugeView {
     self.minValue = 0
     self.colors = colors
     self.additionalInfo = nil
+    self.isInt = false
   }
   
   /**
@@ -65,6 +67,7 @@ extension GaugeView {
     self.minValue = 0
     self.colors = colors
     self.additionalInfo = additionalInfo
+    self.isInt = false
   }
   
   /**
@@ -80,5 +83,6 @@ extension GaugeView {
     self.minValue = 0
     self.colors = colors
     self.additionalInfo = nil
+    self.isInt = false
   }
 }

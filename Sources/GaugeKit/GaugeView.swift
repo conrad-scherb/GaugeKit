@@ -29,6 +29,7 @@ public struct GaugeView : View {
   let minValue: Int?
   let colors: [Color]
   let additionalInfo: GaugeAdditionalInfo?
+  let isInt: Bool
   
   public init(
     title: String? = nil,
@@ -44,7 +45,27 @@ public struct GaugeView : View {
     self.minValue = minValue
     self.colors = colors
     self.additionalInfo = additionalInfo
+    self.isInt = false
   }
+  
+  public init(
+    title: String? = nil,
+    value: Int? = nil,
+    maxValue: Int? = nil,
+    minValue: Int? = nil,
+    colors: [Color],
+    additionalInfo: GaugeAdditionalInfo? = nil
+  ) {
+    self.title = title
+    self.value = Double(value ?? 0)
+    self.maxValue = maxValue
+    self.minValue = minValue
+    self.colors = colors
+    self.additionalInfo = additionalInfo
+    self.isInt = true
+  }
+  
+  
   
   public var body: some View {
     let flipAngle = Angle(degrees: flipped ? 180 : 0)
@@ -52,7 +73,7 @@ public struct GaugeView : View {
     ZStack {
       ZStack {
         GaugeMeter(value: value, maxValue: maxValue, minValue: minValue, colors: colors)
-        GaugeLabelStack(value: value, title: title)
+        GaugeLabelStack(value: value, title: title, isInt: isInt)
       }
       .rotation3DEffect(flipAngle, axis: (x: 0, y: 1, z: 0))
       .opacity(flipped ? 0.1 : 1)
@@ -74,6 +95,6 @@ public struct GaugeView : View {
 
 struct Gauge_Previews: PreviewProvider {
   static var previews: some View {
-    GaugeView(title: "Hej", value: 50, colors: [.red, .orange, .yellow, .green], additionalInfo: .init(strap: "This is the top title", title: "Title", body: "Hejsan svejsan"))
+    GaugeView(title: "Hej", value: 1, maxValue: 100, minValue: 0, colors: [.red, .orange, .yellow, .green], additionalInfo: .init(strap: "This is the top title", title: "Title", body: "Hejsan svejsan"))
   }
 }

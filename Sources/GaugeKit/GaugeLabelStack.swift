@@ -21,18 +21,22 @@ struct GaugeLabelStack: View {
   
   var value: Double?
   var title: String?
+  var isInt: BooleanLiteralType
   
   var body: some View {
     GeometryReader { geometry in
       let isTaller = geometry.size.width < geometry.size.height
       let smallestDimension = isTaller ? geometry.size.width : geometry.size.height
-            
+      
       VStack {
         if let unwrappedValue = value {
-          Text("\(unwrappedValue, specifier: "%.\(unwrappedValue > 10 || (unwrappedValue - Double(Int(unwrappedValue))) < 0.1 ? 0 : 1)f")")
-            .fontWeight(.bold)
+          let specifier = isInt ? "%.0f" : "%.\(unwrappedValue > 10 || (unwrappedValue - Double(Int(unwrappedValue))) < 0.1 ? 0 : 1)f"
+          
+          
+          Text("\(unwrappedValue, specifier: specifier)").fontWeight(.bold)
             .font(.system(size: smallestDimension / 4))
             .foregroundColor(valueColor)
+          
         }
         if let unwrappedTitle = title {
           Text(unwrappedTitle)
