@@ -95,6 +95,6 @@ public struct GaugeView : View {
 
 struct Gauge_Previews: PreviewProvider {
   static var previews: some View {
-    GaugeView(title: "Hej", value: 1, maxValue: 100, minValue: 0, colors: [.red, .orange, .yellow, .green], additionalInfo: .init(strap: "This is the top title", title: "Title", body: "Hejsan svejsan"))
+    GaugeView(title: "Hej", value: 75, maxValue: 100, minValue: 50, colors: [.red, .orange, .yellow, .green], additionalInfo: .init(strap: "This is the top title", title: "Title", body: "Hejsan svejsan"))
   }
 }

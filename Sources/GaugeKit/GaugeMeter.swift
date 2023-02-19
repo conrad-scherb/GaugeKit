@@ -38,7 +38,7 @@ struct GaugeMeter : View {
     let unwrappedMin = Double(minValue ?? 0)
     let unwrappedMax = Double(maxValue ?? 100)
     let unwrappedValue = value ?? 0
-    let percentage = (unwrappedValue + unwrappedMin) / unwrappedMax
+    let percentage = (Double(unwrappedValue) - unwrappedMin) / (unwrappedMax - unwrappedMin)
     self.progressTo = percentage * (trimEnd - trimStart) + trimStart
   }
   
@@ -53,7 +53,7 @@ struct GaugeMeter : View {
     let unwrappedMin = Double(minValue ?? 0)
     let unwrappedMax = Double(maxValue ?? 100)
     let unwrappedValue = value ?? 0
-    let percentage = (Double(unwrappedValue) + unwrappedMin) / unwrappedMax
+    let percentage = (Double(unwrappedValue) - unwrappedMin) / (unwrappedMax - unwrappedMin)
     self.progressTo = percentage * (trimEnd - trimStart) + trimStart
   }
   
@@ -99,7 +99,6 @@ struct GaugeMeter : View {
       }
     }
     .aspectRatio(1, contentMode: .fit)
-    
   }
 }
 
@@ -128,6 +127,6 @@ private struct GaugeMask: View {
 struct GaugeComponents_Previews: PreviewProvider {
   static var previews: some View {
     let colors: [Color] = [.red, .orange, .yellow, .green]
-    GaugeView(title: "Speed", value: 6, maxValue: 10, minValue: 0, colors: colors)
+    GaugeView(title: "Speed", value: 38.4, maxValue: 43, minValue: 34, colors: colors)
   }
 }
